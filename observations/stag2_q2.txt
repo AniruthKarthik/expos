@@ -1,0 +1,1 @@
+On deleting sample.dat, the root file entry is removed, the corresponding inode is marked free, and the single data block allocated to the file is returned to the disk free list, increasing the free block count by one.
