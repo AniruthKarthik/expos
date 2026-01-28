@@ -1,0 +1,2 @@
+XSM will not work if the OS Startup Code is loaded to any page other than Page 1. The XSM boot sequence is hard-coded to transfer control to Page 1, and there is no relocation or dynamic page lookup during startup. If the startup code is placed elsewhere, it will never be executed, causing the system to fail to boot. [END]
+
