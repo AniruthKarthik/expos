@@ -1,0 +1,38 @@
+// OS Startup Code – Assignment 1
+// Code logical pages: 4,5
+// Stack logical page: 8
+
+loadi(65,7);
+loadi(66,8);
+
+// INT 10 handler
+loadi(22,35);
+loadi(23,36);
+
+// Exception handler
+loadi(2,15);
+loadi(3,16);
+
+// Page table setup
+PTBR = PAGE_TABLE_BASE;
+PTLR = 9;
+
+// Logical page 4 -> physical 65 (code, read-only)
+[PTBR + 8]  = 65;
+[PTBR + 9]  = "0100";
+
+// Logical page 5 -> physical 66 (code, read-only)
+[PTBR + 10] = 66;
+[PTBR + 11] = "0100";
+
+// Logical page 8 -> physical 76 (stack, read/write)
+[PTBR + 16] = 76;
+[PTBR + 17] = "0110";
+
+// User stack setup
+[(76 * 512) + 511] = 2048;
+SP = (76 * 512) + 512;
+
+// Transfer control to user mode
+ireturn;
+
